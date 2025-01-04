@@ -1,5 +1,6 @@
 #pragma once
-#include <iostream>
+#include "Grades.h"
+#include <string>
 #include <map>
 
 class Student
@@ -8,19 +9,22 @@ class Student
 
 		std::string name;
 		std::string id;
-		std::map<std::string, double> grades;
+		Grades grades;
 
 
 	public:
 
 		Student(std::string name, std::string id);
 
-		std::string getName() const;
-		std::string getId() const;
-		void printGrades() const;
+		std::string getName();
+		std::string getId();
+		std::map<std::string, double> getGrades();
+		void printGrades();
 
 		void setName(std::string student_name);
 		void setId(std::string id);
-		void setGrades(std::map<std::string, double> grades);
+		void setGrades(std::map<std::string, double> student_grades);
+
+
 };
 

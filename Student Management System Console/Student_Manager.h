@@ -13,8 +13,8 @@ class Student_Manager
 
 		void addStudent(Student student);
 		void viewStudent(Student student);
-		void deleteStudent(Student student);
 		//void editStudent(Student student);
+		void deleteStudent(Student student);
 		void listStudent(Student student);
 };
 

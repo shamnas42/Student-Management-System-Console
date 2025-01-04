@@ -1,8 +1,6 @@
 #include "Student_Manager.h"
 #include <vector>
-#include "Student.h"
-
-
+#include <iostream>
 
 Student_Manager::Student_Manager(std::vector<Student> students)
 	: students(students){}
@@ -14,11 +12,16 @@ void Student_Manager::addStudent(Student student)
 
 void Student_Manager::viewStudent(Student student)
 {
-	student.getName();
-	student.getId();
+	std::cout << "Student Name: " << student.getName() << "\nStudent Id: " << student.getId() << "\n";
 	student.printGrades();
-
 }
+
+//void Student_Manager::editStudent(Student student)
+//{
+//	student.setName();
+//	student.setId();
+//	student.setGrades();
+//}
 
 void Student_Manager::deleteStudent(Student student)
 {
@@ -30,13 +33,6 @@ void Student_Manager::deleteStudent(Student student)
 		}
 	}
 }
-
-//void Student_Manager::editStudent(Student student)
-//{
-//	student.setName();
-//	student.setId();
-//	student.setGrades();
-//}
 
 void Student_Manager::listStudent(Student student)
 {
