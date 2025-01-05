@@ -3,9 +3,12 @@
 
 Grades::Grades() {}
 
+Grades::Grades(std::map<std::string, double> grades)
+	: grades(grades) {}
+
 std::map<std::string, double> Grades::getGrades()
 {
-	return grades; 
+	return grades;
 }
 
 void Grades::setGrades(std::map<std::string, double> class_grades)
@@ -15,30 +18,67 @@ void Grades::setGrades(std::map<std::string, double> class_grades)
 
 void Grades::addSubjectAndScore(std::string currentSubject, double changeSubjectScoreTo)
 {
-	//TO:DO Test if changeSubjectScoreTo is not duplicate 
-	grades.insert(std::pair<std::string, double>(currentSubject, changeSubjectScoreTo));
+
+	if (grades.find(currentSubject) == grades.end())
+	{
+		grades.insert(std::pair<std::string, double>(currentSubject, changeSubjectScoreTo));
+	}
+	else
+	{
+		std::cout << "Subject Already Present\n\n";
+	}
 }
 
 void Grades::editSubjectName(std::string currentSubject, std::string changeSubjectName)
 {
-	//TO:DO Test if crrent is indeed inside and if change is not a duplicate 
 
-	grades.insert(std::pair<std::string, double>(changeSubjectName, grades[currentSubject]));
-	grades.erase(currentSubject);
+	if (grades.find(currentSubject) != grades.end() && grades.find(changeSubjectName) == grades.end())
+	{
+		grades.insert(std::pair<std::string, double>(changeSubjectName, grades[currentSubject]));
+		grades.erase(currentSubject);
+	}
+	else if (grades.find(currentSubject) == grades.end())
+	{
+		std::cout << "Subject Not Present\n\n";
+	}
+	else if (grades.find(changeSubjectName) != grades.end())
+	{
+		std::cout << "New Subject Already Present\n\n";
+	}
 }
 
 void Grades::editSubjectScore(std::string currentSubject, double changeSubjectScoreTo)
 {
-	grades[currentSubject] = changeSubjectScoreTo;
+	if (grades.find(currentSubject) != grades.end())
+	{
+		grades[currentSubject] = changeSubjectScoreTo;
+	}
+	else
+	{
+		std::cout << "Subject Not Present\n\n";
+	}
+}
+
+void Grades::deleteSubjectNameandScore(std::string currentSubject)
+{
+	grades.erase(currentSubject);
 }
 
 void Grades::printGrades()
 {
-	for (auto grade : grades)
+	if (grades.empty())
 	{
-		std::cout << "\t" << grade.first << ": " << grade.second << "\n";
+		std::cout << "Grades: NaN \n\n";
 	}
-	std::cout << "\n";
+	else
+	{
+		std::cout << "Grades: \n";
+		for (auto grade : grades)
+		{
+			std::cout << "\t" << grade.first << ": " << grade.second << "\n";
+		}
+		std::cout << "\n";
+	}
 }
 
 

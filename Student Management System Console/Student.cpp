@@ -12,28 +12,11 @@ std::string Student::getId()
 {
 	return id;
 }
-std::map<std::string, double> Student::getGrades()
+Grades Student::getGrades()
 {
-	return grades.getGrades(); 
+	return grades; 
 }
 
-void Student::printGrades() 
-{
-	if (grades.getGrades().empty())
-	{
-		std::cout << "Student Grades: NaN \n\n";
-	}
-	else
-	{
-		std::cout << "Student Grades: \n";
-		for (auto grade : grades.getGrades())
-		{
-			std::cout << "\t" << grade.first << ": " << grade.second << "\n";
-		}
-		std::cout << "\n";
-	}
-}
-		
 void Student::setName(std::string student_name)
 {
 	name = student_name;
@@ -42,7 +25,13 @@ void Student::setId(std::string student_id)
 {
 	id = student_id;
 }
-void Student::setGrades(std::map<std::string, double> student_grades)
+void Student::setGrades(Grades student_grades)
 {
-	grades.setGrades(student_grades);
+	grades = student_grades;
+}
+
+void Student::printProfile()
+{
+	std::cout << "Name: " << name << "\nId: " << id << "\n" ;
+	grades.printGrades();
 }
